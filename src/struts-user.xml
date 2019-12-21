@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"/WEB-INF/struts-2.0.dtd">
+<struts>
+	 <package name="userPackage"  extends="interceptPackage"  namespace="/user">  <!-- 请求前缀/user/** -->
+	 	
+		<action name="*User" method="{1}" class="userAction">
+			<result name="goAdd">/WEB-INF/jsp/user/addUser.jsp</result>
+			<result name="addUser">/WEB-INF/jsp/result.jsp</result>
+			<result name="queryPageUser">/WEB-INF/jsp/user/queryUser.jsp</result>
+	 	</action>
+		
+		<!-- 下载请求 -->
+	 	<action name="download"  method="download" class="userAction">
+	 	 <!--result默认name是success可不写，type="stream" 把一般内容输出到流 -->
+            <result type="stream" >
+            	<!--默认为 text/plain -->
+		        <param name="contentType">application/octet-stream;</param>
+		        <!-- 默认为 inputStream，你的 Action 要有java.io.ByteArrayInputStream这个值 -->       
+		        <param name="inputName">inputStream</param>
+		        <!-- 默认为 inline(在线打开)，设置为 attachment 将会下载该文件，filename 指定下载文件名-->  
+               	<!-- ${fileName}, 它将通过 Action 的 getFileName() 获得文件名 -->
+		        <param name="contentDisposition">attachment;filename="${fileName}"</param>      
+		        <!-- 输出时缓冲区的大小 -->  
+         		<param name="bufferSize">4096</param>
+         		<!--解决中文文件名乱码-->
+        		<param name="encode">true</param>
+		    </result>	
+		</action>
+		
+	</package>
+</struts>
+

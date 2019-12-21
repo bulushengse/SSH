@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zhoubc.bean.Role" table="SYS_ROLE" schema="zhoubc1">
+		<id name="ROLE_ID" column="ROLE_ID"></id>
+		<property name="ROLE_NAME" column="ROLE_NAME"></property>
+		<property name="RIGHTS" column="RIGHTS"></property>
+		<property name="PARENT_ID" column="PARENT_ID"></property>
+		<property name="ADD_QX" column="ADD_QX"></property>
+		<property name="DEL_QX" column="DEL_QX"></property>
+		<property name="EDIT_QX" column="EDIT_QX"></property>
+		<property name="CHA_QX" column="CHA_QX"></property>
+		<property name="QX_ID" column="QX_ID"></property>
+	</class>
+</hibernate-mapping>

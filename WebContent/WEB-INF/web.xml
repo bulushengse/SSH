@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>SSH</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+   <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>ssh.root</param-value>
+  </context-param>
+  
+  <!-- spring上下文 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  <!-- log4j日志文件-->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
+  
+  <!-- 过滤器编码  -->
+  	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>com.zhoubc.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  <!-- 配置struts   -->
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <!-- 默认struts.xml必须放在src目录下。自定义修改struts.xml文件存放位置，测试多次，init-param标签不生效 -->
+  <!-- <init-param>
+	<param-name>config</param-name>
+	<param-value>struts-default.xml,struts-plugin.xml,struts/struts.xml</param-value>
+  </init-param> -->
+  <!-- 自定义修改请求后缀，测试多次，init-param标签不生效。可见struts.xml配置文件中struts.action.extension配置-->
+  <!--<init-param>
+　<param-name>struts.action.extension</param-name>
+　 <param-value>action,do</param-value>
+  </init-param> -->
+  <filter-mapping>
+  <filter-name>struts2</filter-name>
+  	<!--  指定拦截的请求，对静态资源的访问可以设置*.action和*.jsp，也可设置/*再加上struts.xml配置文件中struts.action.excludePattern配置-->
+  	<url-pattern>/*</url-pattern>
+  	<!-- <url-pattern>/*.action</url-pattern>
+  	<url-pattern>/*.jsp</url-pattern> -->
+  </filter-mapping>
+  
+  <!--  log4j监听器-->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <!--  spring上下文监听器-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- 错误页面 -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.jsp</location>
+  </error-page>
+   <!-- 500异常 统一交给struts2异常拦截ExceptionInterceptor.java -->
+<!--   <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/jsp/error.jsp</location>
+  </error-page> -->
+  
+</web-app>

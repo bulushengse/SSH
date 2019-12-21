@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zhoubc.bean.User" table="SYS_USER" schema="zhoubc1">
+		<id name="USER_ID" column="USER_ID">
+			<!-- <generator class="sequence">
+				<param name="sequence_name">zhoubc1.SEQ_USER</param>
+			</generator> -->
+		</id>
+		<property name="USERNAME" column="USERNAME"></property>
+		<property name="PASSWORD" column="PASSWORD"></property>
+		<property name="NAME" column="NAME"></property>
+		<property name="RIGHTS" column="RIGHTS"></property>
+		<property name="ROLE_ID" column="ROLE_ID"></property>
+		<property name="LAST_LOGIN" column="LAST_LOGIN"></property>
+		<property name="IP" column="IP"></property>
+		<property name="STATUS" column="STATUS"></property>
+		<property name="BZ" column="BZ"></property>
+		<property name="SKIN" column="SKIN"></property>
+		<property name="EMAIL" column="EMAIL"></property>
+		<property name="PHONE" column="PHONE"></property>
+	</class>
+</hibernate-mapping>

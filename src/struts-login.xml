@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"/WEB-INF/struts-2.0.dtd">
+<struts>
+	 <package name="default"  extends="interceptPackage"  namespace="/">  
+	 
+	 	<action name="login_toLogin"  method="goLogin" class="loginAction">
+	 		<result name="goLogin">/WEB-INF/jsp/system/userLogin.jsp</result>
+		</action>
+		
+		<!-- AJAX请求 -->
+	 	<action name="checkLogin"  method="checkLogin" class="loginAction">
+	 		 <!--result默认name是success可不写，由于返回的是json格式数据,因此type必须是json -->
+	 		<result type="json" >
+            <!--param 的 name固定写，result就是java类要返回的数据变量  -->
+               <param name="root">resultMap</param>
+            </result>
+		</action>
+		
+		<action name="goIndex"  method="main_Index" class="loginAction">
+	 		<result name="main_Index">/WEB-INF/jsp/system/main_Index.jsp</result>
+		</action>
+		
+
+
+
+	 </package>	
+	 
+</struts>
+
